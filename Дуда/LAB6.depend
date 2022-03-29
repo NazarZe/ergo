@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1637520437 source:d:\project\discrete math\lab_4\lab4\list.cpp
+	<cstddef>
+	<iostream>
+	"List.h"
+
+1639079329 d:\project\discrete math\lab_4\lab4\list.h
+	<string>
+
+1639241727 source:d:\project\discrete math\lab_7\lab6\main.cpp
+	<iostream>
+	"../../Lab_4/LAB4/List.h"
+
+1637520437 source:d:\project\discrete math\semestre_1\lab_4\lab4\list.cpp
+	<cstddef>
+	<iostream>
+	"List.h"
+
+1639079329 d:\project\discrete math\semestre_1\lab_4\lab4\list.h
+	<string>
+
+1639248856 source:d:\project\discrete math\semestre_1\lab_7\lab6\main.cpp
+	<iostream>
+	"../../Lab_4/LAB4/List.h"
+
