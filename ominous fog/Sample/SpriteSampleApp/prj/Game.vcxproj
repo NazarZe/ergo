@@ -130,6 +130,7 @@
     <Image Include="..\Bin\Resources\Textures\fire.tga" />
     <Image Include="..\Bin\Resources\Textures\hero.tga" />
     <Image Include="..\Bin\Resources\Textures\noise.tga" />
+    <Image Include="..\Bin\Resources\Textures\redline.tga" />
     <Image Include="..\Bin\Resources\Textures\smoke.tga" />
     <Image Include="..\Bin\Resources\Textures\star.tga" />
   </ItemGroup>

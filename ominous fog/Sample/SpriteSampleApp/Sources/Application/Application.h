@@ -88,6 +88,8 @@ protected:
 	Sprite _background;
 	Sprite _smoke;
 	Sprite _hero;
+	Sprite _redline;
+	Sprite _star;
 
 	
 	Input::Gamepad gp;

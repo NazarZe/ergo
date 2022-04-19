@@ -110,5 +110,8 @@
     <Image Include="..\..\..\grass.tga">
       <Filter>Resources\Textures</Filter>
     </Image>
+    <Image Include="..\Bin\Resources\Textures\redline.tga">
+      <Filter>Resources\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
