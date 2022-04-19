@@ -96,8 +96,8 @@ void Application::Update(float deltaTime)
 		this->_hero.MakeObjectTM();
 		Vector2 new_pos = { 10.0f, 10.0f };
 
-		//new_pos.x = new_pos.x * (circle / 360);
-		//new_pos.y = new_pos.y * (circle / 360);;
+		new_pos.x = new_pos.x * (circle / 360);
+		new_pos.y = new_pos.y * (circle / 360);;
 		this->_star.setRotation(circle + 90);
 		this->_star.MakeObjectTM();
 
@@ -123,11 +123,19 @@ void Application::Update(float deltaTime)
 		const Vector2& pos = this->_hero.getPosition();
 		Vector2 new_pos = pos;
 
+		static float fTime = 0.0f;
+		fTime += deltaTime;
+		while (fTime > 1.0f)
+		{
+			fTime--;
+
+		}
 
 		this->_sprite.setTexture(Globals::Texures["fire.tga"]);
 		this->_sprite.setDepth(2.0f);
 		this->_sprite.setScale({ 5.0f, 5.0f });
 		this->_sprite.setPosition(new_pos);
+		this->_sprite.setRotation(360* fTime);
 		this->_sprite.MakeObjectTM();
 
 	}
@@ -139,9 +147,8 @@ void Application::Update(float deltaTime)
 	//////////////////////////////////////////////////////////
 	if (this->gp.getRStick().Lenght())
 	{
-		float fTime2 = 100.0f;
+		float fTime2 = 10000.0f;
 		float fTime = 0.0f;
-		fTime += deltaTime;
 		while (fTime < 1.0f)
 		{
 			fTime += 0.01f;
