@@ -22,7 +22,15 @@ Application::Application()
 Application::~Application()
 {
 }
+float bez(float x, float y, float t) {
 
+
+
+
+
+	return 0;
+
+}
 void Application::Init()
 {
 	// initing window and open gl
@@ -35,23 +43,30 @@ void Application::Init()
 	
 	
 	this->_background.setTexture( Globals::Texures[ "grass.tga" ] );
-	this->_background.setDepth( 1.0f );
+	this->_background.setDepth( 0.0f );
 	this->_background.setScale( { 60.0f, 60.0f } );
 	this->_background.setPosition({ 0.0f, 0.0f });
 	this->_background.MakeObjectTM();
 
-	/* this->_smoke.setTexture(Globals::Texures["star.tga"]);
-	this->_smoke.setDepth( 1.0f );
-	this->_smoke.setScale( { 5.0f, 5.0f } );
-	this->_smoke.setPosition( { 10.0f, 100.0f } );
-	this->_smoke.MakeObjectTM(); */
+	this->_star.setTexture(Globals::Texures[ "star.tga" ]);
+	this->_star.setDepth( 1.0f );
+	this->_star.setScale( { 5.0f, 5.0f } );
+	this->_star.setPosition( { 100.0f, 100.0f } );
+	this->_star.MakeObjectTM();
 
 	this->_hero.setTexture( Globals::Texures[ "hero.tga" ] );
 	this->_hero.setDepth( 3.0f );
 	this->_hero.setScale( { 5.0f, 5.0f } );
 	this->_hero.setPosition( { 0.0f, 0.0f } );
-	this->_hero.setRotation(180);
+	this->_hero.setRotation( 180 );
 	this->_hero.MakeObjectTM();
+
+	this->_smoke.setTexture(Globals::Texures[ "smoke.tga" ]);
+	this->_smoke.setDepth(3.0f);
+	this->_smoke.setScale({ 5.0f, 5.0f });
+	this->_smoke.setPosition({ 250.0f, 250.0f });
+	this->_smoke.setRotation(180);
+	this->_smoke.MakeObjectTM();
 
 	this->gp.Init( 0 );
 	this->gp.setEnabled(true);
@@ -66,37 +81,31 @@ void Application::Key( unsigned char key, bool bIsPressed )
 {
 }
 
-void Application::Update( float deltaTime )
+void Application::Update(float deltaTime)
 {
-	
+
 	this->gp.Update();
 
-	if (this->gp.isReleased(Input::EGamepadButton::Y))
-	{
-		this->_sprite.setTexture(Globals::Texures["fire.tga"]);
-		this->_sprite.setDepth(2.0f);
-		this->_sprite.setScale({ 5.0f, 5.0f });
-		this->_sprite.setPosition({ 0.0f, 0.0f });
-		this->_sprite.MakeObjectTM();
 
-	}
-	if (this->gp.isReleased(Input::EGamepadButton::A))
-	{
-		exit(0);
 
-	}
 	if (this->gp.getRStick().Lenght())
 	{
-		float fspeedcircle = 2.0f;
+
 		float circle = this->gp.getRStick().Angle();
-		this->_hero.setRotation(circle+90);
+		this->_hero.setRotation(circle + 90);
 		this->_hero.MakeObjectTM();
-	
+		Vector2 new_pos = { 10.0f, 10.0f };
+
+		//new_pos.x = new_pos.x * (circle / 360);
+		//new_pos.y = new_pos.y * (circle / 360);;
+		this->_star.setRotation(circle + 90);
+		this->_star.MakeObjectTM();
+
 	}
 
 	if (this->gp.getLStick().Lenght())
 	{
-		float fspeed = 2.0f;
+		float fspeed = 4.0f;
 		const Vector2& pos = this->_hero.getPosition();
 		const Vector2& stickDiff = this->gp.getLStick().Position();
 		Vector2 new_pos = pos;
@@ -105,10 +114,55 @@ void Application::Update( float deltaTime )
 		new_pos.y += -stickDiff.y * fspeed;
 
 		this->_hero.setPosition(new_pos);
-		this->_hero.MakeObjectTM(); 
+		this->_hero.MakeObjectTM();
 	}
 
+
+	if (this->gp.isReleased(Input::EGamepadButton::B))
 	{
+		const Vector2& pos = this->_hero.getPosition();
+		Vector2 new_pos = pos;
+
+
+		this->_sprite.setTexture(Globals::Texures["fire.tga"]);
+		this->_sprite.setDepth(2.0f);
+		this->_sprite.setScale({ 5.0f, 5.0f });
+		this->_sprite.setPosition(new_pos);
+		this->_sprite.MakeObjectTM();
+
+	}
+	if (this->gp.isReleased(Input::EGamepadButton::A))
+	{
+		exit(0);
+
+	}
+	//////////////////////////////////////////////////////////
+	if (this->gp.getRStick().Lenght())
+	{
+		float fTime2 = 100.0f;
+		float fTime = 0.0f;
+		fTime += deltaTime;
+		while (fTime < 1.0f)
+		{
+			fTime += 0.01f;
+			Vector2 p1 = this->_hero.getPosition();
+			Vector2 p2 = this->_smoke.getPosition();
+
+			Vector2 new_pos = p2;
+
+			new_pos.x += ((p1.x - p2.x) / fTime2) * fTime;
+			new_pos.y += ((p1.y - p2.y) / fTime2) * fTime;
+
+			this->_smoke.setPosition(new_pos);
+			this->_smoke.MakeObjectTM();
+
+
+		}
+
+	}
+	
+
+	/* {
 		static float fTime = 0.0f;
 		fTime += deltaTime;
 		while (fTime > 1.0f)
@@ -116,17 +170,17 @@ void Application::Update( float deltaTime )
 			fTime--;
 
 		}
-		if( this->gp.getRStick().Lenght() ){}
 
+		
 		// just a sample, do not try to use it anywhere
-		/* simplest easing anim in range  [1..5] -> [5..1] by one */
+		/* simplest easing anim in range  [1..5] -> [5..1] by one 
 		
 		//float fScale = 1.0f + sinf( fTime * 3.14f ) * 16.0f;
 		float fRotation = fTime * 360;
 		//this->_sprite.setScale( { fScale, fScale } ); 
 		this->_sprite.setRotation( fRotation );
 		this->_sprite.MakeObjectTM(); 
-	}
+	}*/
 }
 
 void Application::Draw()
@@ -149,7 +203,8 @@ void Application::Draw()
 	this->_drawable.Draw( this->_background );
 	this->_drawable.Draw( this->_sprite );
 	this->_drawable.Draw( this->_hero );
-	this->_drawable.Draw( this->_smoke );
+	this->_drawable.Draw( this->_star);
+	this->_drawable.Draw(this->_smoke);
 	
 	
 

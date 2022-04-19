@@ -5,4 +5,4 @@ cl : command line warning D9035: option 'Gm' has been deprecated and will be rem
   Math.cpp
   esUtil.cpp
   Generating Code...
-  Utilities.vcxproj -> C:\Users\zelin\Downloads\SpriteSampleApp (1)\SpriteSampleApp\Libs\Bin\Debug-Win32\Utilities.lib
+  Utilities.vcxproj -> C:\Users\zelin\проекти\ergo\ominous fog\SpriteSampleApp\Libs\Bin\Debug-Win32\Utilities.lib

@@ -1,3 +1,16 @@
 ﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  stdafx.cpp
+cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  Sprite.cpp
+  main.cpp
+  Gamepad.cpp
+C:\Users\zelin\проекти\ergo\ominous fog\SpriteSampleApp\Sources\Input\Gamepad.cpp(149,3): warning C4995: 'XInputEnable': name was marked as #pragma deprecated
+C:\Users\zelin\проекти\ergo\ominous fog\SpriteSampleApp\Sources\Input\Gamepad.cpp(157,3): warning C4995: 'XInputEnable': name was marked as #pragma deprecated
+  easing.cpp
+  Drawable.cpp
+  Globals.cpp
   Application.cpp
-  Game.vcxproj -> C:\Users\zelin\Downloads\SpriteSampleApp (1)\SpriteSampleApp\Bin\Debug-Win32\Game.exe
+  Generating Code...
+  LINK : C:\Users\zelin\проекти\ergo\ominous fog\SpriteSampleApp\Bin\Debug-Win32\Game.exe not found or not built by the last incremental link; performing full link
+Application.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  Game.vcxproj -> C:\Users\zelin\проекти\ergo\ominous fog\SpriteSampleApp\Bin\Debug-Win32\Game.exe

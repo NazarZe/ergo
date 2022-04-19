@@ -1,8 +1,0 @@
-﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  stdafx.cpp
-cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  TGA.cpp
-  Math.cpp
-  esUtil.cpp
-  Generating Code...
-  Utilities.vcxproj -> C:\Users\zelin\Downloads\SpriteSampleApp (1)\SpriteSampleApp\Libs\Bin\Debug-Win32\Utilities.lib

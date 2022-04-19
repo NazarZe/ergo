@@ -113,7 +113,8 @@ void Drawable::Init()
 			"smoke.tga",
 			"star.tga",
 			"hero.tga",
-			"grass.tga"
+			"grass.tga",
+			"redline.tga"
 		};
 		for( const std::string& sName : vecTex )
 		{
